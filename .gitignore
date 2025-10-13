@@ -3,8 +3,14 @@
 *.exe
 *.dat
 *.txt
+*.png
+*.eps
+*.pdf
+*.jpg
+*.jpeg
 *.tgz
 *.bit
 bin
 lib
 include
+figures
