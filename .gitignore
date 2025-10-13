@@ -1,0 +1,10 @@
+*.o
+*.so
+*.exe
+*.dat
+*.txt
+*.tgz
+*.bit
+bin
+lib
+include

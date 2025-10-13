@@ -1,0 +1,53 @@
+FILENAME1 = convert_stamp_to_text
+FILENAME2 = convert_count_to_text
+
+EXE1	=	$(FILENAME1).exe
+EXE2	=	$(FILENAME2).exe
+
+CC	=	gcc
+
+COPTS	=	-fPIC -Wall
+
+FLAGS	=	-shared -Wall,-soname -nostartfiles -s
+
+LDFLAGS =        -O2 -Wall 
+
+OutPutOpt = -o 
+
+LIBS	=	-lm
+
+INCLUDEDIR =	-I$(NKHOME)/include
+
+INSTALLDIR     =	$(NKHOME)/bin
+INSTALLINCLUDE =	$(NKHOME)/include
+
+OBJS1	=	$(FILENAME1).o
+OBJS2	=	$(FILENAME2).o
+
+INCLUDES =	 
+
+
+#########################################################################
+
+all	:	$(EXE1) $(EXE2)
+clean	:
+		/bin/rm -f $(OBJS1) $(EXE1) $(OBJS2) $(EXE2)
+
+install	:	$(EXE1) $(EXE2)
+		#/bin/rm -f $(INSTALLDIR)/$(EXE)
+		install $(EXE1) $(INSTALLDIR); install $(EXE2) $(INSTALLDIR)
+
+$(EXE1):      $(OBJS1)
+		$(CC) $(LDFLAGS) $^ $(LIBS) $(OutPutOpt)$@
+		@echo "$@ done"
+
+$(EXE2):      $(OBJS2)
+		$(CC) $(LDFLAGS) $^ $(LIBS) $(OutPutOpt)$@
+		@echo "$@ done"
+
+$(OBJS1)	:	$(INCLUDES) 
+$(OBJS2)	:	$(INCLUDES) 
+
+%.o	:	%.c
+		$(CC) $(COPTS) $(INCLUDEDIR) -c -o $@ $<
+
